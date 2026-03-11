@@ -28,8 +28,6 @@ describe("sum", () => {
   });
 });
 
-const { subtract, multiply, divide } = require('./math');
-
 describe('Pruebas de operaciones matemáticas', () => {
 
   // --- PRUEBAS DE RESTA ---
