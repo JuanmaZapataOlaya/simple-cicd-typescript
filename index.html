@@ -3,23 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sum Two Numbers :) </title>
+  <title>TypeScript Calculator :)</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .container { display: flex; gap: 10px; align-items: center; }
+    #result { color: blue; }
+  </style>
 </head>
 <body>
-  <h1>Sum Two Int Numbers =) </h1>
-  <input type="number" id="num1" placeholder="First number" />
-  <span> + </span>
-  <input type="number" id="num2" placeholder="Second number" />
-  <button type="button" id="btnSum">Sum</button>
+  <h1>TS Calculator =)</h1>
+  
+  <div class="container">
+    <input type="number" id="num1" placeholder="First number" />
+    
+    <select id="operation">
+      <option value="add">+</option>
+      <option value="subtract">−</option>
+      <option value="multiply">×</option>
+      <option value="divide">÷</option>
+    </select>
+
+    <input type="number" id="num2" placeholder="Second number" />
+    
+    <button type="button" id="btnCalculate">Calculate</button>
+  </div>
+
   <p>Result: <strong id="result">—</strong></p>
 
-  <!-- Link to the compiled JS (compile sum.ts with: tsc sum.ts) -->
   <script src="sum.js"></script>
   <script>
-    document.getElementById('btnSum').addEventListener('click', function () {
-      var a = Number(document.getElementById('num1').value) || 0;
-      var b = Number(document.getElementById('num2').value) || 0;
-      document.getElementById('result').textContent = sum(a, b);
+    document.getElementById('btnCalculate').addEventListener('click', function () {
+      const a = Number(document.getElementById('num1').value) || 0;
+      const b = Number(document.getElementById('num2').value) || 0;
+      const op = document.getElementById('operation').value;
+      const resultElement = document.getElementById('result');
+
+      try {
+        let res;
+        // Lógica para decidir qué función llamar según el selector 
+        switch (op) {
+          case 'add':
+            res = window.sum(a, b);
+            break;
+          case 'subtract':
+            res = window.subtract(a, b);
+            break;
+          case 'multiply':
+            res = window.multiply(a, b);
+            break;
+          case 'divide':
+            res = window.divide(a, b);
+            break;
+          default:
+            res = "Invalid Op";
+        }
+        resultElement.textContent = res;
+      } catch (error) {
+        // Manejo de errores (especialmente para división por cero) 
+        resultElement.textContent = "Error: " + error.message;
+      }
     });
   </script>
 </body>
