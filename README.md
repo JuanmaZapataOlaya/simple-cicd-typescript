@@ -2,6 +2,8 @@
 
 Este proyecto es una introducción práctica al desarrollo con **TypeScript**, pruebas automatizadas con **Jest**, análisis estático usando **ESLint**, y un flujo de **CI/CD** configurado con **GitHub Actions**.
 
+Disparando el workflow
+
 El objetivo final es construir una **calculadora de números enteros**.  
 Actualmente el repositorio solo implementa la operación de **suma**, que sirve como base para practicar correcciones, pruebas y validación del pipeline.
 
