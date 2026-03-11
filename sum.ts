@@ -1,5 +1,13 @@
 "use strict";
 
+// Definimos la interfaz para que el Linter sepa qué funciones tiene window
+interface Window {
+    sum: (a: number, b: number) => number;
+    subtract: (a: number, b: number) => number;
+    multiply: (a: number, b: number) => number;
+    divide: (a: number, b: number) => number;
+}
+
 /**
  * Returns the sum of two numbers.
  */
@@ -32,8 +40,9 @@ function divide(a: number, b: number): number {
     return a / b;
 }
 
-// Exponer a window para el navegador y los tests (esto las hace globales)
-(window as any).sum = sum;
-(window as any).subtract = subtract;
-(window as any).multiply = multiply;
-(window as any).divide = divide;
+// Exponer a window usando una conversión de tipo segura
+const win = (window as unknown as Window);
+win.sum = sum;
+win.subtract = subtract;
+win.multiply = multiply;
+win.divide = divide;
